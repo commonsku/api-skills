@@ -1,0 +1,7 @@
+{
+  "name": "commonsku-api-skills",
+  "description": "Agent skills for using the commonsku public API.",
+  "author": {
+    "name": "commonsku"
+  }
+}

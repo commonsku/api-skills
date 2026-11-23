@@ -1,0 +1,16 @@
+{
+  "name": "commonsku-api-skills",
+  "owner": {
+    "name": "commonsku"
+  },
+  "metadata": {
+    "description": "Agent skills for using the commonsku public API."
+  },
+  "plugins": [
+    {
+      "name": "commonsku-api-skills",
+      "source": "./",
+      "description": "Agent skills for using the commonsku public API."
+    }
+  ]
+}

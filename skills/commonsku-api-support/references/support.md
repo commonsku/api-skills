@@ -21,7 +21,7 @@
 
 This skill is for the right-hand column.
 
-Questions about access also go to `support@commonsku.com`: whether an account has API access, a key that has not arrived or needs replacing, a sandbox, or permissions that seem to be missing. The getting-started article covers these: `https://help.commonsku.com/knowledge/commonsku-api-getting-started-access-and-faqs`
+Questions about access also go to `support@commonsku.com`: whether an account has API access, a key that has not arrived or needs replacing, a sandbox, or permissions that seem to be missing. The getting-started article covers these: `https://help.commonsku.com/knowledge/commonsku-api-getting-started`
 
 Some plans include more hands-on integration help. The getting-started article explains who it covers.
 
@@ -38,11 +38,13 @@ Look up the operation in the live spec. Compare the method, path, required field
 | Code | Check |
 | --- | --- |
 | 400, 422 | The request. Read the response body for detail. Compare required fields, types and allowed values with the spec |
-| 401 | The key. Is the header named `x-api-key`? Is the value complete, with no quotes or spaces? Is the right environment variable loaded? Is it the key for this environment, sandbox or production? |
-| 403 | Read the operation's 403 description in the spec. The usual causes are a missing capability on the identity behind the key, a plan feature, or a record that belongs to another company. The `Beta Feature` label is not a cause. If reads work and a documented write returns 403, the user asks support to check the account's permissions |
+| 401 | The key. Is the header named `x-api-key`? Is the value complete, with no quotes or spaces? Is the right environment variable loaded? Is it the key for this environment, sandbox or production? A request with no key returns 403 with `{"message":"Forbidden"}`, not the 401 the spec lists. A wrong key, or the other environment's key, can fail the same way |
+| 403 | Read the operation's 403 description in the spec. The usual causes are a missing capability on the identity behind the key, a plan feature, or a record that belongs to another company. A missing or wrong key can also return 403. See the 401 row. The `Beta Feature` label itself does not limit access: a Beta endpoint works with your key like any other. It marks recently released endpoints that may still change, so retest after updates. If reads work but writes fail, see the note under this table |
 | 404 | The ID. Path IDs are UUIDs, not form numbers. The record may be inactive, deleted, or in another account |
-| 429 | A rate limit: 20,000 requests a day, 100 a minute. The response does not say how long to wait. Back off and retry. If 429s continue, the daily allowance is probably used up. It resets at 11:59 PM Eastern time. Check whether another integration on the same key is using it. See the `commonsku-api-setup` skill |
+| 429 | A rate limit: 2 requests a second, with bursts of up to 4, and 20,000 a day per key. Some accounts have a higher daily limit. Ask `support@commonsku.com`. The response does not say how long to wait. Back off and retry. If 429s continue, the daily allowance is probably used up. It resets at 11:59 PM Eastern time. Check whether another integration on the same key is using it. See the `commonsku-api-setup` skill |
 | 5XX | Go to step 5 |
+
+**Reads work, writes fail.** If reads work but creates or updates fail with a permission error, it is usually an account set-up issue on commonsku's side, not your key or code. Email `support@commonsku.com` with the endpoint, request time and response body, say reads work but writes don't, and never include the API key.
 
 ### 3. Is this documented behaviour?
 

@@ -23,7 +23,7 @@ New to the commonsku API? Start with the `commonsku-api-setup` skill. It walks y
 Example request:
 
 ```sh
-curl -sS "<base-url>/industries?page_limit=50&sort=industry_name" \
+curl -sS "$COMMONSKU_BASE_URL/industries?page_limit=50&sort=industry_name" \
   -H "x-api-key: <your-api-key>" \
   -H "Accept: application/json"
 ```

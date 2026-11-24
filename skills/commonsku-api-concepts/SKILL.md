@@ -26,7 +26,6 @@ This skill explains the commonsku words an agent meets in the API, how the objec
 - **Create a purchase order.** There is no create operation for purchase orders. `PUT /purchase_orders/{id}/shipping` updates only shipping details.
 - **Create a sales order or an invoice directly.** Create a project at the stage you want, upgrade an order with `POST /orders/upgrade`, or submit a connected shop checkout.
 - **Change an invoice beyond marking it paid.** `PUT /invoices/{id}` accepts only `status_name`, and its only value is `Paid`.
-- **Update a project.** Projects can be created and given notes, but have no update operation.
 - **Look up suppliers on their own endpoint.** Use `GET /company` with `company_type=SUPPLIER`.
 - **Set a credit limit.** The API exposes only the `credit_hold` flag on a client. Calculate the limit in the other system, and switch the flag from there.
 

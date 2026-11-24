@@ -11,6 +11,7 @@ This skill holds the rules for every call to the commonsku REST API: how to auth
 
 It needs:
 
+- Network access to `platform.commonsku.com`, or the sandbox address, for API calls.
 - Network access to `api.commonsku.com`, to read the live spec.
 
 ## Rules for every answer
@@ -26,7 +27,7 @@ It needs:
 Send the API key in an `x-api-key` header on every request.
 
 ```sh
-curl -sS "<base-url>/clients?page_limit=5" \
+curl -sS "$COMMONSKU_BASE_URL/clients?page_limit=5" \
   -H "x-api-key: <your-api-key>" \
   -H "Accept: application/json"
 ```
@@ -37,11 +38,22 @@ Keep the key in an environment variable or a secret manager. Never print it, log
 
 ## Base URL and sandbox
 
-Read the base URL from `servers[0].url` in the spec you download. Do not work it out from the docs address, and do not copy it from older code.
+| Environment | Base URL |
+| --- | --- |
+| Production | `https://platform.commonsku.com/v1` |
+| Sandbox | `https://platform.01.commonskusandbox.com/v1`, the same for every account |
+
+Set `COMMONSKU_BASE_URL` to the production or sandbox URL. The examples in these skills use it.
+
+The base URL is `servers[0].url` in the spec you downloaded. The table shows today's values. If they ever differ, the spec wins.
+
+Older integrations may use a different server address. It still works for now but will be retired. Move existing integrations to these base URLs.
 
 Production is the live commonsku account. Writes there change real clients, orders and invoices.
 
-A sandbox may be available, depending on the account. The user asks `support@commonsku.com`. A sandbox is a separate system: keys, records and permissions do not carry across.
+A sandbox may be available, depending on the account. The user asks `support@commonsku.com`. A sandbox is a separate environment with its own key, and its data never syncs with production.
+
+The sandbox spec is at `https://api.01.commonskusandbox.com/public_api_doc.php?format=json`. The sandbox spec can differ from production, especially for newly released operations. When working in sandbox, read the sandbox spec.
 
 Unless the user says they are working in a sandbox, treat every POST, PUT and DELETE as a change to live data. Show the exact request and get a go-ahead before you send a write.
 
@@ -49,7 +61,7 @@ Unless the user says they are working in a sandbox, treat every POST, PUT and DE
 
 The API reference is at `https://api.commonsku.com/public_api_doc.php`. It is a JavaScript viewer, so a plain fetch of it returns an empty page. Use the spec instead, as the next section says.
 
-Access, keys and FAQs are in commonsku's getting-started article: `https://help.commonsku.com/knowledge/commonsku-api-getting-started-access-and-faqs`
+Access, keys and FAQs are in commonsku's getting-started article: `https://help.commonsku.com/knowledge/commonsku-api-getting-started`
 
 Webhooks are not in the spec.
 
@@ -70,14 +82,15 @@ Read `references/api-basics.md` for keys, rate limits, paging, filters, dates an
 
 ## Rate limits and backoff
 
-- The limits are 20,000 requests a day and 100 requests a minute, per API key.
+- The limits are 2 requests a second, with bursts of up to 4, and 20,000 requests a day, per API key.
+- Some accounts have a higher daily limit. The user asks `support@commonsku.com`.
 - Each account has one key. Every integration on the account shares the same allowance.
 - The daily count resets at 11:59 PM Eastern time.
 - A request over a limit returns `429 Too Many Requests`. The response does not say how long to wait.
 - On a 429, wait, then double the wait after each further 429: for example 1, 2, 4 and 8 seconds, then 1 minute. Set a cap.
 - Never retry at once in a loop.
 - If 429s continue for a long time, the daily allowance is probably used up. Stop, and resume after the reset.
-- Send requests one at a time. Never send them in bursts or in parallel loops.
+- Send requests one at a time. Pace requests at no more than 2 a second. Never send them in parallel loops.
 
 ## Paging
 
@@ -93,8 +106,8 @@ Never fetch everything. Where an operation supports it, filter with `date_update
 ## Gotchas
 
 - A field in a GET response is not always settable. It is settable only if it is also in the request body of a POST or PUT operation. Check the request body before you say a field can be set.
-- Some operations list `Beta Feature` under `security` in the spec. The label needs nothing extra on the key. Every operation is available to any key with API access.
-- Many operations check a permission, which the spec calls a capability, on the identity behind the key. If reads work and a documented write returns 403, the user asks support to check the account's permissions.
+- The `Beta Feature` label itself does not limit access: a Beta endpoint works with your key like any other. It marks recently released endpoints that may still change, so retest after updates.
+- If reads work but creates or updates fail with a permission error, it is usually an account set-up issue on commonsku's side, not your key or code. Email `support@commonsku.com` with the endpoint, request time and response body, say reads work but writes don't, and never include the API key.
 - An unset date in a response is the string `0000-00-00 00:00:00`. Most date parsers reject it. Test for it and treat it as empty.
 
 ## What the API cannot do

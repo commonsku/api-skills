@@ -98,7 +98,7 @@ The product operations cover products, costs, colours, sizes, imprints and custo
 
 ## Habits that prevent most problems
 
-- **Stay inside the rate limits.** Plan backfills and polling schedules around 20,000 requests a day and 100 a minute. See the `commonsku-api-setup` skill.
+- **Stay inside the rate limits.** Plan backfills and polling schedules around 2 requests a second, bursts of up to 4, and 20,000 requests a day per key. Some accounts have a higher daily limit. Ask `support@commonsku.com`. See the `commonsku-api-setup` skill.
 - **Make every write idempotent.** Check for a record by its match key before you create one. Webhook deliveries and retried jobs arrive twice sooner or later.
 - **Log each request and response with a timestamp**, without the API key. You need it to debug, and support asks for it when something looks like a bug.
 - **Retry 5XX responses and timeouts with backoff.** Do not retry a 4XX unchanged. Fix the request.

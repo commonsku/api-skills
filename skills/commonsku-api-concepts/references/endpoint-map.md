@@ -1,6 +1,6 @@
 # Endpoint map
 
-This is a snapshot of the live spec from 2026-11-18: 107 operations across 76 paths. Use it to get your bearings. The API changes, so confirm anything you rely on against the live spec, downloaded as the `commonsku-api-setup` skill describes.
+A snapshot of the live spec from 2026-11-18, with `PUT /projects/{id}` added on 2026-11-24. The live spec wins. The API changes, so confirm anything you rely on against the live spec, downloaded as the `commonsku-api-setup` skill describes.
 
 ## What you can read and write, by object
 
@@ -11,7 +11,7 @@ This is a snapshot of the live spec from 2026-11-18: 107 operations across 76 pa
 | Clients | Yes | Yes | Yes | Yes | `customer_number` and `credit_hold` are settable |
 | Client addresses | Yes | Yes | Yes | Yes | Per client, or all clients' addresses in one list |
 | Client contacts | Yes | Yes | Yes | Yes | Per client, or all clients' contacts in one list |
-| Projects | Yes | Yes | No | No | Created at a chosen starting stage, with optional billing and shipping address. Notes can be added. A project overview feed can be read |
+| Projects | Yes | Yes | Yes | No | Created at a chosen starting stage, with optional billing and shipping address. Update covers the name, in-hands date, budget, event type, order rep and client rep. The in-hands date, budget, event type and reps also apply to every order in the project. Changing the client rep needs the `MODIFY-CLIENT-REP` capability. Notes can be added. A project overview feed can be read |
 | Opportunities, Presentations, Estimates | Yes | Through project creation or an upgrade | No | No | `GET /orders` needs `order_type`. `POST /orders/upgrade` moves an order to a later stage |
 | Sales orders | Yes | Through project creation, an upgrade, or a connected shop checkout | Yes | No | Update covers status, dates, addresses, contacts, terms, currency, tax, `customer_po` and a few form fields |
 | Invoices | Yes | By upgrading a sales order | Status only | No | The only settable field is `status_name`, and its only value is `Paid` |
@@ -35,7 +35,7 @@ Two points catch people out:
 
 ## Every operation
 
-"Spec label" shows `Beta Feature` where the spec lists it. The label needs nothing extra on the key. Every operation is available to any key with API access.
+"Spec label" shows `Beta Feature` where the spec lists it. The `Beta Feature` label itself does not limit access: a Beta endpoint works with your key like any other. It marks recently released endpoints that may still change, so retest after updates.
 
 | Area | Method | Path | Summary | Spec label |
 | --- | --- | --- | --- | --- |
@@ -126,6 +126,7 @@ Two points catch people out:
 | project | GET | `/projects` | list projects | |
 | project | POST | `/projects` | create project | |
 | project | GET | `/projects/{id}` | get project | |
+| project | PUT | `/projects/{id}` | update project | |
 | project | POST | `/projects/{id}/notes` | create project note | |
 | project | GET | `/projects/{id}/overview` | get project overview feed | |
 | purchase order | GET | `/purchase_orders` | list purchase orders | |

@@ -27,7 +27,7 @@ Read this when you apply tags to a record, or read the tags another call returns
 | `GET /orders`, `GET /orders/{id}`, `POST /orders/upgrade` | `tags` |
 | `GET /sales_orders`, `GET /sales_orders/{id}`, `PUT /sales_orders/{id}` | `tags` |
 | `GET /invoices`, `GET /invoices/{id}`, `PUT /invoices/{id}` | `tags` |
-| `GET /projects/{id}/overview` | `tags` on each feed entry |
+| `GET /projects/{id}/overview` | `tags` on each feed entry. These are tagged users, not labels from `GET /tags`. The `commonsku-api-projects` skill covers the feed, and the `commonsku-api-users` skill covers users |
 
 `ORDER` is a `resource_type` on `GET /tags`, but no order, sales order or invoice call takes tags.
 

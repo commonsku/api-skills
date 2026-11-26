@@ -40,6 +40,7 @@ A client's contacts and addresses each have list, create, update and deactivate 
 - The spec says `credit_hold` defaults to `false` when it is not provided. Send its current value on every client update, so a hold is not cleared by accident.
 - Put one email address per contact. Two addresses in one field can stop that contact logging in to the client portal.
 - A `403` on a create or update means the commonsku user behind the API key cannot make that change. See the `commonsku-api-support` skill.
+- A missing or invalid `terms` returns `400`. The invalid-value error points you to `/terms`.
 - For a one-time import of a large client list, ask commonsku support about the client import. Through the API, each client, contact and address is a separate call against the daily limit (see the `commonsku-api-setup` skill).
 - Send `address_type` as `SHIPPING`, `BILLING` or `BOTH`. Responses can show `Shipping`, `Billing` or `Both`, so compare without regard to case.
 - `address_postal` holds the postal code or ZIP code.

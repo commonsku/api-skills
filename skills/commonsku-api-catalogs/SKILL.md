@@ -29,7 +29,7 @@ Both list operations are paged; follow the cursor as the `commonsku-api-setup` s
 
 ### Add items
 
-Send `POST /catalogs/{id}/items` with `item_ids`, an array of item IDs. Read the status:
+Send `POST /catalogs/{id}/items` with `item_ids`, an array of item IDs. Use item IDs from an estimate or sales order. Items from a presentation don't work through the API, because presentation items are product options, not products. Read the status:
 
 - `201`: all added.
 - `207`: some added. `failedIds` gives each failed ID with the reason.

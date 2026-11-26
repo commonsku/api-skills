@@ -13,7 +13,7 @@ Read this when a call takes or returns payment terms and you need to know which 
 
 | Operation | Field | Form |
 | --- | --- | --- |
-| `POST /clients` | `terms` | The exact `terms_name` from `GET /terms`. Defaults to the default term in the admin settings |
+| `POST /clients` | `terms` | Required. The exact `terms_name` from `GET /terms`. Leaving it out returns 400 |
 | `PUT /clients/{id}` | `terms` | The exact `terms_name` from `GET /terms` |
 | `PUT /sales_orders/{id}` | `terms_id` | UUID |
 | `PUT /account/{id}` | `default_terms_id` | UUID. The `commonsku-api-accounts` skill covers the rest |

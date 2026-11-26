@@ -44,7 +44,7 @@ Example response, with made-up values:
 
 1. List the terms and pick one.
 2. Pass the value the target call asks for. Check that field in the spec: some take the name, others the ID.
-   - `POST /clients` and `PUT /clients/{id}` take `terms`. Pass the exact `terms_name` from `GET /terms`. If you leave it out on create, the client gets the default term from the admin settings.
+   - `POST /clients` and `PUT /clients/{id}` take `terms`. Pass the exact `terms_name` from `GET /terms`. It's required when you create a client. Leaving it out returns 400.
    - `PUT /sales_orders/{id}` takes `terms_id`, the UUID from `GET /terms`.
 3. `references/where-terms-are-used.md` lists every operation that takes or returns terms.
 

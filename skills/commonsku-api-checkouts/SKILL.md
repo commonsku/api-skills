@@ -34,7 +34,7 @@ Don't rely on the status code alone. Check that the response includes an order, 
 
 ### Find checkouts that stopped
 
-Send `GET /shop/{id}/checkout?has_error=true`. Each checkout, and each line, carries an `error_message`. To read one checkout, use `GET /checkout/{id}`.
+Send `GET /shop/{id}/checkout?has_error=true`. Each checkout, and each line, carries an `error_message`.
 
 ### Convert automatically
 
@@ -44,8 +44,8 @@ To turn valid checkouts into sales orders automatically once payment succeeds, s
 
 - `unit_price` is the shop's unit price for that product, not the retail price. commonsku checks it against the shop's setup.
 - A `201` can come back with `is_valid` false and no `order_id`. The line's error gives the reason, such as the price commonsku expected.
-- commonsku doesn't reject a repeated checkout. Put the storefront's order number in `customer_po` or `order_metadata`, and before resending after a timeout, read `GET /shop/{id}/checkout` once and look for it. It has no paging, so don't repeat the read in a loop.
-- Shipping method is a choice from the shop's shipping options (`shipping_range_id`). There are no fields for shipping cost, tax already charged or a payment reference.
+- commonsku doesn't stop a repeated checkout. Sending the same one twice creates two checkouts, and possibly two sales orders, depending on the shop's settings. Put the storefront's order number in `customer_po` or `order_metadata`, and before resending after a timeout, read `GET /shop/{id}/checkout` once and look for it. It has no paging, so don't repeat the read in a loop.
+- Shipping method is a choice from the shop's shipping options (`shipping_range_id`).
 - A `400` can mean the shop is closed or isn't a connected shop.
 
 ## Known issues

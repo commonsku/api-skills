@@ -48,6 +48,9 @@ Example response, with made-up values:
 ## Gotchas
 
 - commonsku may add industries in the future. Existing industries stay supported. Fetch the list. Do not hard-code it.
+- For this list, `page_limit` runs from 1 to 100 and defaults to 20. That is lower than the general maximum in the `commonsku-api-setup` skill.
+- Clients take the industry's name in `industry_name`. Accounts take its ID in `industry_id`, as the `commonsku-api-accounts` skill describes.
+- The spec does not say whether `industry_name` matching ignores case or spacing. Send the name exactly as `GET /industries` returns it.
 
 ## Known issues
 
@@ -56,5 +59,6 @@ None known.
 ## What the API cannot do
 
 - **Create, change or delete an industry.** The API has only one industry operation, `GET /industries`.
+- **Tell you about an unknown industry name.** The spec documents no error for an `industry_name` that is not on the list.
 
-Last verified: 2026-11-23
+Last verified: 2026-11-26

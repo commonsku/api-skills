@@ -33,8 +33,8 @@ Send `POST /artwork` with `item_location_id`, `target_type: "COPY"` and `target_
 
 - Pass `url` as a direct link to a single file.
 - `proof_id` takes a proof UUID or one of the names `None`, `Email Proof`, `Digital Photo` or `Pre-production`. If the client must approve a proof, choose one of the last three: commonsku accepts a proof upload only when a proof is required ([proofing](https://help.commonsku.com/knowledge/proofing-process)).
-- Every decoration location needs artwork before purchase orders can be generated in commonsku. If your integration creates locations without artwork, PO generation in commonsku fails with "Some decoration locations do not have any artwork associated."
-- `artwork_uom` maps a unit-of-measure code to a quantity, for example `{"artwork_uom.S": 2}`. The spec doesn't list the valid codes.
+- Every decoration location needs artwork before purchase orders can be generated in commonsku. If your integration creates locations without artwork, purchase order (PO) generation in commonsku fails with "Some decoration locations do not have any artwork associated."
+- On create and update, send `artwork_uom` as an object, for example `"artwork_uom": {"S": 2}`. Reads return each code as its own key, for example `"artwork_uom.S": 2`. The spec doesn't list the valid codes.
 
 ## Known issues
 

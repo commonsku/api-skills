@@ -1,7 +1,7 @@
 {
   "name": "commonsku-api-skills",
   "description": "Agent skills for using the commonsku public API.",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "author": {
     "name": "commonsku"
   }

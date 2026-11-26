@@ -52,7 +52,7 @@ The folder must already exist. Pass its `folder_id` to the file operations, as t
 ## Gotchas
 
 - `parent_type` is free text. The spec does not list the allowed values.
-- The spec's `GET /folder` response types each folder's `folder_id` and `parent_id` as integers. The parameters, the files in that response and `GET /folder/{id}` use UUIDs. Check what you receive before you validate types.
+- The spec's `GET /folder` response types each folder's `folder_id` and `parent_id` as integers. They are UUID strings, as everywhere else. Treat them as strings.
 
 ## Known issues
 

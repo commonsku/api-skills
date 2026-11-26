@@ -22,7 +22,7 @@ Send `POST /shop/{id}/connected-checkout`. Each line in `breakdowns` needs `exte
 ```json
 {
   "breakdowns": [{"external_sku": "TEE-BLK-L", "quantity": 2, "unit_price": 18.50, "subtotal": 37.00}],
-  "customer": {"contact_name": "Example Customer", "contact_email": "sam@example.com"},
+  "customer": {"contact_name": "Example Customer", "contact_email": "customer@example.com"},
   "customer_po": "10045",
   "checked_out_amount": 37.00
 }

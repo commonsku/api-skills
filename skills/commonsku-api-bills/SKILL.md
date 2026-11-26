@@ -29,7 +29,7 @@ A bill is a supplier's invoice to the distributor, vouched against purchase orde
 - A bill has two states: Vouched and Exported. `POST /bills` creates a Vouched bill. It becomes Exported only through Bill Export in commonsku. There is no Received state.
 - `bill_reference_number` must be unique for each supplier division. A repeat returns `400`.
 - Add every cost, such as inbound freight, to the sales order before you create the first bill for that PO. A sales order change shows on the PO only after the PO is regenerated, and a PO with a bill attached cannot be regenerated until the bill is deleted ([help article](https://help.commonsku.com/knowledge/purchase-orders)).
-- For Connected+ and connected suppliers that offer electronic POs, commonsku can create the bill automatically when it fully matches the PO ([Automated Billing](https://help.commonsku.com/knowledge/automated-billing)). Before creating a bill, call `GET /bills/prepare` with the PO number: lines already fully billed come back with a quantity of 0 or less.
+- For Connected+ and connected suppliers that offer electronic POs, commonsku can create the bill automatically when it fully matches the PO ([Automated Billing](https://help.commonsku.com/knowledge/automated-billing)).
 - Every line's order must use the same currency, and each tax must belong to your account.
 - A `403` naming `CREATE-BILL` or `COMPANY-TYPE-DISTRIBUTOR` means the commonsku user behind your API key lacks that permission. See the `commonsku-api-support` skill.
 

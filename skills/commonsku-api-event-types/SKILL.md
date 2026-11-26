@@ -7,7 +7,7 @@ description: "List the event types commonsku accepts and pick one for a project.
 
 ## What this skill helps you do
 
-This skill helps you work with the commonsku event type list. Every new project needs an event type, so check this list first to find a valid `event_type`.
+This skill helps you work with the commonsku event type list. Every new project needs an event type, so check this list first to find a valid `event_type`. New to the commonsku API? Start with the `commonsku-api-setup` skill.
 
 ## Steps
 
@@ -43,9 +43,11 @@ Example response, with made-up values:
 1. List the event types.
 2. Pass the chosen `event_type` name when you create a project. `POST /projects` requires it. `PUT /projects/{id}` also accepts it.
 
+Shops take the ID instead: `PUT /shop/{id}` accepts `default_event_type_id`, the `event_type_id` from `GET /event_types`.
+
 ## Gotchas
 
-- Projects take the event type's name in `event_type`, not its `event_type_id`. An unknown name returns `400`.
+- Projects take the event type's name in `event_type`; shops take its ID in `default_event_type_id`. An unknown name returns `400` on projects.
 - Changing `event_type` with `PUT /projects/{id}` also changes it on every order in the project.
 - commonsku may add event types in the future. Existing event types stay supported. Fetch the list. Do not hard-code it.
 
@@ -57,4 +59,4 @@ None known.
 
 - **Create, change or delete an event type.** The API has only one event type operation, `GET /event_types`.
 
-Last verified: 2026-11-25
+Last verified: 2026-11-26

@@ -36,6 +36,6 @@ Read this when a call takes or returns payment terms and you need to know which 
 The spec does not say these things. Test in a sandbox before you rely on them:
 
 - Whether matching a client's `terms` against `terms_name` is case-sensitive.
-- What the API returns when a client's `terms` or a sales order's `terms_id` is not on the distributor's list.
+- What the API returns when a sales order's `terms_id` is not on the distributor's list.
 - Whether the `terms` string returned on invoices and bills is the `terms_name`.
 - How `terms_id`, `payment_terms_id` and `default_terms_id` differ on an account.

@@ -36,4 +36,4 @@ Read this when a call asks for a user and you need to know which value to pass. 
 
 The spec does not say what these take. Test in a sandbox before you rely on them:
 
-- `client_rep_id` and `sales_rep_id` on `PUT /shop/{id}`. A future shop skill will cover them.
+- `client_rep_id` and `sales_rep_id` on `PUT /shop/{id}`. The `commonsku-api-shops` skill covers the rest of that call.

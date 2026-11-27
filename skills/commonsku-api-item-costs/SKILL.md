@@ -32,7 +32,7 @@ The response is `201` with the cost, the item and the order.
 
 ### Keep a cost internal
 
-To track a cost without the client seeing it, set `hidden` to `1` and `unit_price` to `0` with `PUT /item_costs/{id}`. `hidden: 1` keeps the cost off the client invoice. `unit_price: 0` keeps it out of the sales order total. Set `unit_cost` to track what the cost is to you.
+To track a cost without the client seeing it, set `hidden` to `1` and `unit_price` to `0` with `PUT /item_costs/{id}`. `hidden: 1` keeps the cost off the client invoice. `unit_price: 0` keeps it out of the sales order total. The cost still counts in the order's internal cost and margin.
 
 ### Update a cost
 

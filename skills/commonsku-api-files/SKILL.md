@@ -66,7 +66,9 @@ Pass the `file_id` as `artwork_file_id`. The `commonsku-api-artwork` skill gives
 ## Gotchas
 
 - `POST /file` takes JSON only. It does not accept file bytes, multipart or base64. Host the file at a URL, or reuse an existing `file_id`.
-- `parent_type` is free text. The spec gives `CLIENT` and `PRODUCT` as examples, with no full list.
+- Use a publicly reachable, direct-download URL. commonsku fetches the file itself.
+- With `url`, commonsku downloads and stores a copy, and sets `file_size` and `file_type` itself, replacing any values you send. With `file_id`, the existing file is linked unchanged.
+- `parent_type` accepts `CLIENT` and `PRODUCT`.
 
 ## Known issues
 
@@ -76,6 +78,6 @@ None known.
 
 - **Upload file content.** Link a URL instead.
 - **Get or delete a single file.** There is no `GET /file/{id}` or `DELETE` for files.
-- **Tell you the limits.** The spec lists no accepted file types, no size limit, and does not say what commonsku does with a linked URL. Do not assume.
+- **Tell you the limits.** The spec lists no accepted file types or size limit. Do not assume.
 
 Last verified: 2026-11-26

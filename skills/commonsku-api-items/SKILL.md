@@ -55,7 +55,7 @@ The response is `201` with the new item.
 - `item_name` is required on every single-item update, even to change only the price. Send the current name.
 - The bulk margin body uses camelCase (`actionName`, `orderId`, `itemIds`). The rest of the API uses snake_case.
 - If you leave out `source`, `parent_id` is treated as a personal or commonsku product ID. Send `source` for any other catalogue, such as `ps-products` for PromoStandards.
-- `POST /items/product` has no size or colour fields.
+- `POST /items/product` has no size or colour fields, so it adds the whole product. To leave out sizes or colours, delete the unwanted breakdowns with `DELETE /breakdown/{id}`, as the `commonsku-api-breakdowns` skill describes. This changes the order line, not the product.
 
 ## Known issues
 

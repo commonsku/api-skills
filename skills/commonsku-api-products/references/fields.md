@@ -75,6 +75,8 @@ The body takes one of three shapes.
 | `sizes` | array of strings | Size names |
 | `imprints` | array of UUIDs | Imprint IDs |
 
+Not documented: which of the required fields can be sent empty.
+
 ### Copy a global product
 
 | Field | Type | Notes |

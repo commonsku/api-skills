@@ -33,12 +33,12 @@ Without a mode parameter, `GET /products` returns a filtered, paged list of your
 
 | Parameter | Type | Notes |
 | --- | --- | --- |
-| `orderby-field` | `product_name` or `date_created` | |
-| `orderby-dir` | `asc` or `desc` | |
-| `max-results` | integer | Page size |
-| `start-index` | integer | Offset |
+| `orderby-field` | `product_name` or `date_created` | Default `product_name` |
+| `orderby-dir` | `asc` or `desc` | Default `asc` |
+| `max-results` | integer | Page size. Default 25, maximum 250 |
+| `start-index` | integer | Offset. Default 0 |
 
-Paging on this operation is offset style. The `commonsku-api-setup` skill explains it. Not documented: the default and maximum page size.
+Paging on this operation is offset style. The `commonsku-api-setup` skill explains it.
 
 ## Modes
 

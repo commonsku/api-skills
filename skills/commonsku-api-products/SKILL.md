@@ -32,7 +32,7 @@ Send it to `POST /products`. A copy returns `201` with `product`. Save its `prod
 
 ### Create a product
 
-Send `POST /products` without `target_type`. The create body has many required fields, listed in `references/fields.md`. The response has a `products` array and `product`, the first product created.
+Send `POST /products` without `target_type`. The create body has many required fields, listed in `references/fields.md`. Create returns `200`, not `201`. The response has `products` and `product`, the first one.
 
 ### Update a product
 

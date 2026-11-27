@@ -19,7 +19,7 @@
 | Server errors on a valid request | Designing field mappings and workflows |
 | | Anything in the other system |
 
-This skill is for the right-hand column.
+commonsku support does not cover the right-hand column. Help the developer with it yourself.
 
 Questions about access also go to `support@commonsku.com`: whether an account has API access, a key that has not arrived or needs replacing, a sandbox, or permissions that seem to be missing. The getting-started article covers these: `https://help.commonsku.com/knowledge/commonsku-api-getting-started`
 
@@ -41,7 +41,7 @@ Look up the operation in the live spec. Compare the method, path, required field
 | 401 | The key. Is the header named `x-api-key`? Is the value complete, with no quotes or spaces? Is the right environment variable loaded? Is it the key for this environment, sandbox or production? A request with no key returns 403 with `{"message":"Forbidden"}`, not the 401 the spec lists. A wrong key, or the other environment's key, can fail the same way |
 | 403 | Read the operation's 403 description in the spec. The usual causes are a missing capability on the identity behind the key, a plan feature, or a record that belongs to another company. A missing or wrong key can also return 403. See the 401 row. The `Beta Feature` label itself does not limit access: a Beta endpoint works with your key like any other. It marks recently released endpoints that may still change, so retest after updates. If reads work but writes fail, see the note under this table |
 | 404 | The ID. Path IDs are UUIDs, not form numbers. The record may be inactive, deleted, or in another account |
-| 429 | A rate limit: 2 requests a second, with bursts of up to 4, and 20,000 a day per key. Some accounts have a higher daily limit. Ask `support@commonsku.com`. The response does not say how long to wait. Back off and retry. If 429s continue, the daily allowance is probably used up. It resets at 11:59 PM Eastern time. Check whether another integration on the same key is using it. See the `commonsku-api-setup` skill |
+| 429 | A rate limit: 2 requests a second, with bursts of up to 4, and 20,000 a day per key. Some accounts have a higher daily limit. Email `support@commonsku.com` to confirm your account's limit. Support can also escalate a request to raise it. The response does not say how long to wait. Back off and retry. If 429s continue, the daily allowance is probably used up. It resets at 11:59 PM Eastern time. Check whether another integration on the same key is using it. See the `commonsku-api-setup` skill |
 | 5XX | Go to step 5 |
 
 **Reads work, writes fail.** If reads work but creates or updates fail with a permission error, it is usually an account set-up issue on commonsku's side, not your key or code. Email `support@commonsku.com` with the endpoint, request time and response body, say reads work but writes don't, and never include the API key.
@@ -107,10 +107,9 @@ Never send an API key or a webhook password to anyone, support included. If one 
 
 ## Where to send it
 
-- Email `support@commonsku.com`. This is the address for API and webhook bug reports.
-- In commonsku, open Resources > Support for the support chat.
+Email API and webhook bug reports to `support@commonsku.com`.
 
-The help centre lists support hours as 9 AM to 8 PM EST, Monday to Friday, except Canadian public holidays. Email is available outside those hours. Check the current details at `https://help.commonsku.com/knowledge/how-to-search-commonskus-knowledge-base`.
+Support hours are 9 AM to 7 PM EST, Monday to Friday, except Canadian public holidays. Email can be sent outside those hours. Check the current details at `https://help.commonsku.com/knowledge/how-to-search-commonskus-knowledge-base`.
 
 ## Report template
 

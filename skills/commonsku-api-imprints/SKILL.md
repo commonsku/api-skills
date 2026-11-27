@@ -7,7 +7,7 @@ description: "List, create and update a company's imprint methods in commonsku t
 
 ## What this skill helps you do
 
-This skill covers imprints in commonsku. An imprint is a decoration method, such as screen print or embroidery, not a file. You can list, create and update your company's imprints. This skill does not cover attaching imprints to products.
+This skill covers imprints in commonsku. An imprint is a decoration method, such as screen print or embroidery, not a file. You can list, create and update your company's imprints. To attach an imprint to a product, use the `commonsku-api-product-imprints` skill.
 
 To add an artwork file to a decoration, use the `commonsku-api-files` and `commonsku-api-artwork` skills.
 

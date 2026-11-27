@@ -50,7 +50,7 @@ Send `PUT /products/{id}` with only the fields to change. Every field is optiona
 - `PUT /products/{id}` returns `403` for a Sage-sourced product, or a product your company or supplier does not own. The spec's description of `PUT /products/{id}` gives the ownership rules.
 - For the format of `product_tags`, see the `commonsku-api-tags` skill.
 - Not fully documented: what `copied_from` should hold when you create a new product rather than copy one.
-- A product's sizes and custom fields have their own skills: `commonsku-api-product-sizes` and `commonsku-api-product-custom-fields`. Look up colour, cost and imprint operations in the spec. User IDs in `sales_rep_id` and `liked_by` come from the `commonsku-api-users` skill.
+- A product's sizes, imprints and custom fields have their own skills: `commonsku-api-product-sizes`, `commonsku-api-product-imprints` and `commonsku-api-product-custom-fields`. Look up colour and cost operations in the spec. User IDs in `sales_rep_id` and `liked_by` come from the `commonsku-api-users` skill.
 
 ## Known issues
 

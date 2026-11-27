@@ -57,6 +57,7 @@ None known.
 ## What the API cannot do
 
 - **List costs on their own.** Read them from their item.
+- **Add a cost to a purchase order only.** See the `commonsku-api-bills` skill.
 - **Name the capability.** `POST`, `PUT` and `DELETE` return `403` for a missing capability, but the spec does not say which one. See the `commonsku-api-setup` skill.
 
 Last verified: 2026-11-26

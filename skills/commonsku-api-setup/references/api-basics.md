@@ -79,6 +79,8 @@ If reads work but creates or updates fail with a permission error, it is usually
 
 The API key acts with the role of the account's default user. If that user is not an Admin, creates and updates can fail with `403` for a missing capability. Ask commonsku support to check the default user's role.
 
+Even on an Enterprise plan, the account's default user has its own feature setting. If it is not ENTERPRISE, some operations, such as `GET /orders`, can return `403` while others work, and a sandbox key can get `403` on every call. Ask commonsku support to check it.
+
 ## Rate limits
 
 - 2 requests a second, with bursts of up to 4.

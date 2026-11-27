@@ -77,6 +77,8 @@ Many operations check a permission on the identity behind the key. The spec call
 
 If reads work but creates or updates fail with a permission error, it is usually an account set-up issue on commonsku's side, not your key or code. Email `support@commonsku.com` with the endpoint, request time and response body, say reads work but writes don't, and never include the API key.
 
+The API key acts with the role of the account's default user. If that user is not an Admin, creates and updates can fail with `403` for a missing capability. Ask commonsku support to check the default user's role.
+
 ## Rate limits
 
 - 2 requests a second, with bursts of up to 4.

@@ -7,7 +7,7 @@ description: "Read and update order items in commonsku through the API, change m
 
 ## What this skill helps you do
 
-This skill covers items in commonsku. An item is one line on an order. You can read an item, update it, change margins on several items at once, and add a product to an order. It does not cover item costs, item locations or item decorations. For sizes and colours, use the `commonsku-api-breakdowns` skill.
+This skill covers items in commonsku. An item is one line on an order. You can read an item, update it, change margins on several items at once, and add a product to an order. It does not cover item locations or item decorations. Item costs, the extra charges on a line, have their own skill: `commonsku-api-item-costs`. For sizes and colours, use the `commonsku-api-breakdowns` skill.
 
 Check each operation's current fields in the spec you downloaded. This skill does not repeat them.
 
